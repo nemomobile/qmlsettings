@@ -1,0 +1,7 @@
+what is this
+============
+
+this is an experimental attempt to create a QML settings application for Nemo
+Mobile, replacing the MeeGo Touch built-in settings application.
+
+It is currently mostly non-functional. Pull requests welcome.
