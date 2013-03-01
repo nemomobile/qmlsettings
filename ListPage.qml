@@ -77,6 +77,7 @@ Page {
     id: listPage
     property alias model: listview.model
     property alias headerText: pageHeader.text
+    property alias header: listview.header
 
     PageHeader {
         id: pageHeader
