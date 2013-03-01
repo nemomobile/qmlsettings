@@ -32,32 +32,11 @@
 import QtQuick 1.1
 import com.nokia.meego 1.2
 
-PageStackWindow {
-    id: rootWindow
-
-    Component.onCompleted: theme.inverted = true
-
-    initialPage: ListPage {
-        headerText: "Settings"
-        header: Column {
-            width: parent.width
-
-            BrightnessApplet { }
-        }
-        model: ListModel {
-            ListElement {
-                page: "TimeAndDate.qml"
-                title: "Time & Date"
-                subtitle: "Change your current time and date"
-            }
-        }
-    }
-
-    // These tools are shared by most sub-pages by assigning the id to a page's tools property
-    ToolBarLayout {
-        id: commonTools
-        visible: false
-        ToolIcon { iconId: "toolbar-back"; onClicked: { pageStack.pop(); } }
-    }
+Item {
+    height: childrenRect.height
+    anchors.left: parent.left
+    anchors.leftMargin: UiConstants.DefaultMargin
+    anchors.right: parent.right
+    anchors.rightMargin: UiConstants.DefaultMargin
 }
 

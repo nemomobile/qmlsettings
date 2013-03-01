@@ -4,5 +4,7 @@
         <file>ListPage.qml</file>
         <file>TimeAndDate.qml</file>
         <file>DrilldownDelegate.qml</file>
+        <file>Applet.qml</file>
+        <file>BrightnessApplet.qml</file>
     </qresource>
 </RCC>

@@ -32,32 +32,30 @@
 import QtQuick 1.1
 import com.nokia.meego 1.2
 
-PageStackWindow {
-    id: rootWindow
+Applet {
+    Image {
+        id: brightnessLow
+        source: "image://theme/icon-s-image-edit-low-brightness"
+        anchors.left: parent.left
+        anchors.verticalCenter: brightnessSlider.verticalCenter
+    }
 
-    Component.onCompleted: theme.inverted = true
-
-    initialPage: ListPage {
-        headerText: "Settings"
-        header: Column {
-            width: parent.width
-
-            BrightnessApplet { }
-        }
-        model: ListModel {
-            ListElement {
-                page: "TimeAndDate.qml"
-                title: "Time & Date"
-                subtitle: "Change your current time and date"
-            }
+    Slider {
+        id: brightnessSlider
+        stepSize: 1
+        minimumValue: 0
+        maximumValue: 100
+        anchors.left: brightnessLow.right
+        anchors.right: brightnessHigh.left
+        onValueChanged: {
+            console.log("Brightness changed: " + value)
         }
     }
 
-    // These tools are shared by most sub-pages by assigning the id to a page's tools property
-    ToolBarLayout {
-        id: commonTools
-        visible: false
-        ToolIcon { iconId: "toolbar-back"; onClicked: { pageStack.pop(); } }
+    Image {
+        id: brightnessHigh
+        source: "image://theme/icon-s-image-edit-high-brightness"
+        anchors.right: parent.right
+        anchors.verticalCenter: brightnessSlider.verticalCenter
     }
 }
-
