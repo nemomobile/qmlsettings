@@ -53,7 +53,7 @@ PageStackWindow {
             }
 
             ListElement {
-                page: "TimeAndDateSettings.qml"
+                page: "timedate/TimeAndDateSettings.qml"
                 title: "Time & Date"
                 subtitle: "Change system time and date"
                 iconSource: "image://theme/icon-m-settings-time-date"

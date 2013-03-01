@@ -33,6 +33,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.2
 import com.nokia.extras 1.1
 import org.nemomobile.time 1.0
+import ".."
 
 Page {
     tools: commonTools
