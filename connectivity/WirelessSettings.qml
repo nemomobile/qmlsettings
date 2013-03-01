@@ -234,8 +234,8 @@ Page {
                         for (var key in modelData.ipv4) {
                             console.log(key + " -> " + modelData.ipv4[key]);
                         }
-                        settingsSheet.network = modelData;
-                        settingsSheet.open();
+
+                        pageStack.openDialog("SettingsSheet.qml", { network: modelData })
                     }
                 }
             }
@@ -385,10 +385,6 @@ Page {
                 id: dynFields
             }
         }
-    }
-
-    SettingsSheet {
-        id: settingsSheet
     }
 
     InfoBanner {
