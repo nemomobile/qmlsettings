@@ -31,41 +31,29 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.2
+import ".."
 
-PageStackWindow {
-    id: rootWindow
+Page {
+    tools: commonTools
 
-    Component.onCompleted: theme.inverted = true
+    Flickable {
+        id: flickable
+        anchors.fill: parent
+        contentHeight: childrenRect.height
 
-    initialPage: ListPage {
-        headerText: "Settings"
-        header: Column {
-            width: parent.width
+        Column {
+            anchors.fill: parent
 
-            BrightnessApplet { }
-        }
-        model: ListModel {
-            ListElement {
-                page: "connectivity/ConnectivitySettings.qml"
-                title: "Connectivity"
-                subtitle: "Connect to networks and devices"
-                iconSource: "image://theme/icon-m-common-wlan"
-            }
-
-            ListElement {
-                page: "TimeAndDateSettings.qml"
-                title: "Time & Date"
-                subtitle: "Change system time and date"
-                iconSource: "image://theme/icon-m-settings-time-date"
+            DrilldownDelegate {
+                // TODO: subtitleText with network connected to would be nice
+                titleText: "Wireless networks"
+                onClicked: pageStack.push(Qt.resolvedUrl("WirelessSettings.qml"))
             }
         }
     }
 
-    // These tools are shared by most sub-pages by assigning the id to a page's tools property
-    ToolBarLayout {
-        id: commonTools
-        visible: false
-        ToolIcon { iconId: "toolbar-back"; onClicked: { pageStack.pop(); } }
+    ScrollDecorator {
+        flickableItem: flickable
     }
 }
 
