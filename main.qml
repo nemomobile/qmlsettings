@@ -46,7 +46,7 @@ PageStackWindow {
         }
         model: ListModel {
             ListElement {
-                page: "TimeAndDate.qml"
+                page: "TimeAndDateSettings.qml"
                 title: "Time & Date"
                 subtitle: "Change system time and date"
                 iconSource: "image://theme/icon-m-settings-time-date"

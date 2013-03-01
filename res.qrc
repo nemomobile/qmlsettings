@@ -2,7 +2,7 @@
     <qresource prefix="/qml">
         <file>main.qml</file>
         <file>ListPage.qml</file>
-        <file>TimeAndDate.qml</file>
+        <file>TimeAndDateSettings.qml</file>
         <file>DrilldownDelegate.qml</file>
         <file>Applet.qml</file>
         <file>BrightnessApplet.qml</file>
