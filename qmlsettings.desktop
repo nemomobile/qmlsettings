@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Settings
+Categories=Applications
+Exec=invoker --type=e --single-instance /usr/bin/qmlsettings
+Icon=icon-l-settings
+
