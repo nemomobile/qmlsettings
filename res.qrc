@@ -7,6 +7,7 @@
         <file>connectivity/WirelessSettings.qml</file>
         <file>connectivity/SettingsSheet.qml</file>
         <file>connectivity/mustache.js</file>
+        <file>accounts/AccountSettings.qml</file>
         <file>DrilldownDelegate.qml</file>
         <file>Applet.qml</file>
         <file>BrightnessApplet.qml</file>

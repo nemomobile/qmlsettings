@@ -31,48 +31,32 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.2
+import com.nokia.extras 1.1
+import org.nemomobile.accounts 1.0
+import ".."
 
-PageStackWindow {
-    id: rootWindow
+Page {
+    tools: commonTools
 
-    Component.onCompleted: theme.inverted = true
-
-    initialPage: ListPage {
-        headerText: "Settings"
-        header: Column {
-            width: parent.width
-
-            BrightnessApplet { }
+    ListView {
+        id: flickable
+        anchors.fill: parent
+        model: AccountModel { }
+        delegate: DrilldownDelegate {
+            iconSource: model.accountIcon
+            titleText: model.providerDisplayName
+            subtitleText: model.accountDisplayName
         }
-        model: ListModel {
-            ListElement {
-                page: "connectivity/ConnectivitySettings.qml"
-                title: "Connectivity"
-                subtitle: "Connect to networks and devices"
-                iconSource: "image://theme/icon-m-common-wlan"
-            }
 
-            ListElement {
-                page: "accounts/AccountSettings.qml"
-                title: "Accounts"
-                subtitle: "Use services you know and love"
-                iconSource: "image://theme/icon-m-settings-account"
-            }
-
-            ListElement {
-                page: "timedate/TimeAndDateSettings.qml"
-                title: "Time & Date"
-                subtitle: "Change system time and date"
-                iconSource: "image://theme/icon-m-settings-time-date"
-            }
+/*
+        footer: DrilldownDelegate {
+            titleText: "Add account"
+            iconSource: "image://theme/icon-m-common-add"
         }
+*/
     }
 
-    // These tools are shared by most sub-pages by assigning the id to a page's tools property
-    ToolBarLayout {
-        id: commonTools
-        visible: false
-        ToolIcon { iconId: "toolbar-back"; onClicked: { pageStack.pop(); } }
+    ScrollDecorator {
+        flickableItem: flickable
     }
 }
-
