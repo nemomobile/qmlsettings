@@ -12,5 +12,6 @@
         <file>DrilldownDelegate.qml</file>
         <file>Applet.qml</file>
         <file>BrightnessApplet.qml</file>
+        <file>WirelessApplet.qml</file>
     </qresource>
 </RCC>

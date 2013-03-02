@@ -31,50 +31,37 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.2
+import com.meego.extras 1.0
+import MeeGo.Connman 0.2
 
-PageStackWindow {
-    id: rootWindow
+Applet {
+    NetworkingModel {
+        id: networkingModel
 
-    Component.onCompleted: theme.inverted = true
-
-    initialPage: ListPage {
-        headerText: "Settings"
-        header: Column {
-            width: parent.width
-
-            WirelessApplet { }
-            BrightnessApplet { }
+        onTechnologiesChanged: {
+            wifiSwitch.checked = networkingModel.wifiPowered
         }
 
-        model: ListModel {
-            ListElement {
-                page: "connectivity/ConnectivitySettings.qml"
-                title: "Connectivity"
-                subtitle: "Connect to networks and devices"
-                iconSource: "image://theme/icon-m-common-wlan"
-            }
-
-            ListElement {
-                page: "accounts/AccountSettings.qml"
-                title: "Accounts"
-                subtitle: "Use services you know and love"
-                iconSource: "image://theme/icon-m-settings-account"
-            }
-
-            ListElement {
-                page: "timedate/TimeAndDateSettings.qml"
-                title: "Time & Date"
-                subtitle: "Change system time and date"
-                iconSource: "image://theme/icon-m-settings-time-date"
-            }
+        onWifiPoweredChanged: {
+            wifiSwitch.checked = networkingModel.wifiPowered
         }
     }
 
-    // These tools are shared by most sub-pages by assigning the id to a page's tools property
-    ToolBarLayout {
-        id: commonTools
-        visible: false
-        ToolIcon { iconId: "toolbar-back"; onClicked: { pageStack.pop(); } }
+    Label {
+        anchors.verticalCenter: parent.verticalCenter
+        text: "Wi-Fi"
+    }
+
+    Switch {
+        id: wifiSwitch
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        checked: networkingModel.wifiPowered
+        enabled: networkingModel.available
+        onCheckedChanged: {
+            networkingModel.wifiPowered = wifiSwitch.checked
+        }
     }
 }
+
 

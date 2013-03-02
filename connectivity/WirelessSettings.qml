@@ -34,7 +34,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.2
 import com.meego.extras 1.0
 import MeeGo.Connman 0.2
-import "mustache.js" as M
+import ".."
 
 Page {
     id: mainWindow
@@ -67,14 +67,13 @@ Page {
     NetworkingModel {
         id: networkingModel
         property bool sheetOpened
+        property string networkName
 
         onTechnologiesChanged: {
-            wifiSwitch.checked = networkingModel.wifiPowered;
             scanTimer.running = networkingModel.wifiPowered;
         }
 
         onWifiPoweredChanged: {
-            wifiSwitch.checked = networkingModel.wifiPowered;
             scanTimer.running = networkingModel.wifiPowered;
         }
 
@@ -99,7 +98,7 @@ Page {
             }
             if (!sheetOpened) {
                 sheetOpened = true
-                var sheet = pageStack.openSheet(Qt.resolvedUrl("NetworkSettings.qml"), { mustacheView: view })
+                var sheet = pageStack.openSheet(Qt.resolvedUrl("NetworkSettings.qml"), { mustacheView: view, networkName: networkName })
                 sheet.accepted.connect(function() { sheetOpened = false })
                 sheet.rejected.connect(function() { sheetOpened = false })
                 // TODO: there was code that checked for pageStack.busy and
@@ -194,7 +193,7 @@ Page {
                     console.log("clicked " + modelData.name);
                     if (modelData.state == "idle" || modelData.state == "failure") {
                         modelData.requestConnect();
-                        networkName.text = modelData.name;
+                        networkingModel.networkName.text = modelData.name;
                     } else {
                         console.log("Show network status page");
                         for (var key in modelData.ipv4) {
@@ -215,6 +214,7 @@ Page {
 
         Column {
             anchors.fill: parent
+            anchors.margins: UiConstants.DefaultMargin
 
             Text {
                 id: errorLabel
@@ -225,29 +225,8 @@ Page {
                 font.pointSize: 24
             }
 
-            Rectangle {
-                id: switchRect
-                enabled: networkingModel.available
-                anchors { left: parent.left; right: parent.right }
-                height: 80
-                color: "black"
-                Text {
-                    anchors { left: parent.left; verticalCenter: parent.verticalCenter; leftMargin: 20 }
-                    text: "Wi-Fi networks"
-                    color: "white"
-                    font.pointSize: 18
-                }
-                Switch {
-                    id: wifiSwitch
-                    anchors { right: parent.right; verticalCenter: parent.verticalCenter; rightMargin: 40 }
-                    checked: networkingModel.wifiPowered
-                    onCheckedChanged: {
-                        networkingModel.wifiPowered = wifiSwitch.checked
-                    }
-                }
-            }
-
             ListView {
+                header: WirelessApplet { }
                 enabled: networkingModel.available
                 anchors { left: parent.left; right: parent.right }
                 clip: true
