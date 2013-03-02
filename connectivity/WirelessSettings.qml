@@ -117,96 +117,6 @@ Page {
         }
     }
 
-    Component {
-        id: networkRow
-
-        Rectangle {
-            height: 80
-            color: "black"
-            anchors { left: parent.left; right: parent.right }
-
-            Row {
-
-                Image {
-                    source: {
-                        var strength = modelData.strength;
-                        var str_id = 0;
-
-                        if (strength >= 59) {
-                            str_id = 5;
-                        } else if (strength >= 55) {
-                            str_id = 4;
-                        } else if (strength >= 50) {
-                            str_id = 3;
-                        } else if (strength >= 45) {
-                            str_id = 2;
-                        } else if (strength >= 30) {
-                            str_id = 1;
-                        }
-                        return "image://theme/icon-m-common-wlan-strength" + str_id;
-                    }
-                    width: 60
-                    height: 60
-                }
-
-                Column {
-                    Text {
-                        anchors { left: parent.left; leftMargin: 20 }
-                        text: modelData.name ? modelData.name : "hidden network"
-                        color: "white"
-                        font.pointSize: 18
-                    }
-                    Text {
-                        anchors { left: parent.left; leftMargin: 20 }
-                        text: {
-                            var state = modelData.state;
-                            var security = modelData.security[0];
-
-                            if ((state == "online") || (state == "ready")) {
-                                return "connected";
-                            } else if (state == "association" || state == "configuration") {
-                                return "connecting...";
-                            } else {
-                                if (security == "none") {
-                                    return "open";
-                                } else {
-                                    return "secure";
-                                }
-                            }
-                        }
-                        color: {
-                            var state = modelData.state;
-                            if (state == "online" || state == "ready") {
-                                return "gold";
-                            } else {
-                                return "white";
-                            }
-                        }
-                        font.pointSize: 14
-                    }
-                }
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    console.log("clicked " + modelData.name);
-                    if (modelData.state == "idle" || modelData.state == "failure") {
-                        modelData.requestConnect();
-                        networkingModel.networkName.text = modelData.name;
-                    } else {
-                        console.log("Show network status page");
-                        for (var key in modelData.ipv4) {
-                            console.log(key + " -> " + modelData.ipv4[key]);
-                        }
-
-                        pageStack.openDialog(Qt.resolvedUrl("SettingsSheet.qml"), { network: modelData })
-                    }
-                }
-            }
-        }
-    }
-
     Flickable {
         id: flickable
         anchors.fill: parent
@@ -233,7 +143,60 @@ Page {
                 height: 700
                 spacing: 5
                 model: networkingModel.networks
-                delegate: networkRow
+                delegate: ListDelegate {
+                    iconSource: {
+                        var strength = modelData.strength;
+                        var str_id = 0;
+
+                        if (strength >= 59) {
+                            str_id = 5;
+                        } else if (strength >= 55) {
+                            str_id = 4;
+                        } else if (strength >= 50) {
+                            str_id = 3;
+                        } else if (strength >= 45) {
+                            str_id = 2;
+                        } else if (strength >= 30) {
+                            str_id = 1;
+                        }
+                        return "image://theme/icon-m-common-wlan-strength" + str_id;
+                    }
+
+                    titleText: modelData.name ? modelData.name : "(hidden network)"
+                    subtitleText: {
+                        var state = modelData.state;
+                        var security = modelData.security[0];
+
+                        if ((state == "online") || (state == "ready")) {
+                            return "connected";
+                        } else if (state == "association" || state == "configuration") {
+                            return "connecting...";
+                        } else {
+                            if (security == "none") {
+                                return "open";
+                            } else {
+                                return "secure";
+                            }
+                        }
+                    }
+
+                    // TODO: subtitleColor / subtitleColorPressed bindings
+                    // depending on state like in old delegate?
+                    onClicked: {
+                        console.log("clicked " + modelData.name);
+                        if (modelData.state == "idle" || modelData.state == "failure") {
+                            modelData.requestConnect();
+                            networkingModel.networkName.text = modelData.name;
+                        } else {
+                            console.log("Show network status page");
+                            for (var key in modelData.ipv4) {
+                                console.log(key + " -> " + modelData.ipv4[key]);
+                            }
+
+                            pageStack.openDialog(Qt.resolvedUrl("SettingsSheet.qml"), { network: modelData })
+                        }
+                    }
+                }
             }
         }
     }
