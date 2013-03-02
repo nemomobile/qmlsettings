@@ -12,6 +12,8 @@ PkgConfigBR:
     - QtDeclarative
 Requires:
     - qt-components
+    - nemo-qml-plugins-time
+    - nemo-qml-plugins-accounts
 Configure: none
 Builder: qmake
 Files:

@@ -17,6 +17,8 @@ URL:        https://github.com/nemomobile/qmlsettings/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  qmlsettings.yaml
 Requires:   qt-components
+Requires:   nemo-qml-plugins-time
+Requires:   nemo-qml-plugins-accounts
 BuildRequires:  pkgconfig(QtDeclarative)
 BuildRequires:  desktop-file-utils
 
