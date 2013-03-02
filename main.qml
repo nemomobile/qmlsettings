@@ -39,11 +39,18 @@ PageStackWindow {
 
     initialPage: ListPage {
         headerText: "Settings"
-        header: Column {
+        header: Item {
             width: parent.width
+            height: applets.height + UiConstants.DefaultMargin * 2
+            Column {
+                id: applets
+                y: UiConstants.DefaultMargin
+                width: parent.width
+                spacing: UiConstants.DefaultMargin
 
-            WirelessApplet { }
-            BrightnessApplet { }
+                WirelessApplet { }
+                BrightnessApplet { }
+            }
         }
 
         model: ListModel {
