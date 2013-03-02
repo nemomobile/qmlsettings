@@ -33,7 +33,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.2
 
 Item {
-    height: childrenRect.height
+    height: childrenRect.height < theme.ListItemHeightDefault ? theme.ListItemHeightDefault : childrenRect.height
     anchors.left: parent.left
     anchors.leftMargin: UiConstants.DefaultMargin
     anchors.right: parent.right
