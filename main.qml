@@ -45,7 +45,8 @@ PageStackWindow {
             Column {
                 id: applets
                 y: UiConstants.DefaultMargin
-                width: parent.width
+                x: UiConstants.DefaultMargin
+                width: parent.width - UiConstants.DefaultMargin * 2
                 spacing: UiConstants.DefaultMargin
 
                 WirelessApplet { }

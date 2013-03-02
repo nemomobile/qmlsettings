@@ -34,9 +34,6 @@ import com.nokia.meego 1.2
 
 Item {
     height: childrenRect.height < theme.ListItemHeightDefault ? theme.ListItemHeightDefault : childrenRect.height
-    anchors.left: parent.left
-    anchors.leftMargin: UiConstants.DefaultMargin
-    anchors.right: parent.right
-    anchors.rightMargin: UiConstants.DefaultMargin
+    width: parent.width
 }
 
