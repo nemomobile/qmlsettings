@@ -235,7 +235,7 @@ Page {
                             console.log(key + " -> " + modelData.ipv4[key]);
                         }
 
-                        pageStack.openDialog("SettingsSheet.qml", { network: modelData })
+                        pageStack.openDialog(Qt.resolvedUrl("SettingsSheet.qml"), { network: modelData })
                     }
                 }
             }
