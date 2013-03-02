@@ -117,92 +117,75 @@ Page {
         }
     }
 
-    Flickable {
-        id: flickable
+    ViewPlaceholder {
+        enabled: !networkingModel.available || networkList.count == 0
+        text: !networkingModel.available ? "Wireless networking unavailable" : "No wireless networks in range"
+    }
+
+    ListView {
+        id: networkList
+        header: WirelessApplet { }
+        anchors.margins: UiConstants.DefaultMargin
         anchors.fill: parent
-        contentHeight: childrenRect.height
+        model: networkingModel.networks
+        delegate: ListDelegate {
+            iconSource: {
+                var strength = modelData.strength;
+                var str_id = 0;
 
-        Column {
-            anchors.fill: parent
-            anchors.margins: UiConstants.DefaultMargin
-
-            Text {
-                id: errorLabel
-                visible: !networkingModel.available
-                anchors { left: parent.left; right: parent.right; margins: 64 }
-                text: "connman unavailable"
-                color: "pink"
-                font.pointSize: 24
+                if (strength >= 59) {
+                    str_id = 5;
+                } else if (strength >= 55) {
+                    str_id = 4;
+                } else if (strength >= 50) {
+                    str_id = 3;
+                } else if (strength >= 45) {
+                    str_id = 2;
+                } else if (strength >= 30) {
+                    str_id = 1;
+                }
+                return "image://theme/icon-m-common-wlan-strength" + str_id;
             }
 
-            ListView {
-                header: WirelessApplet { }
-                enabled: networkingModel.available
-                anchors { left: parent.left; right: parent.right }
-                clip: true
-                height: 700
-                spacing: 5
-                model: networkingModel.networks
-                delegate: ListDelegate {
-                    iconSource: {
-                        var strength = modelData.strength;
-                        var str_id = 0;
+            titleText: modelData.name ? modelData.name : "(hidden network)"
+            subtitleText: {
+                var state = modelData.state;
+                var security = modelData.security[0];
 
-                        if (strength >= 59) {
-                            str_id = 5;
-                        } else if (strength >= 55) {
-                            str_id = 4;
-                        } else if (strength >= 50) {
-                            str_id = 3;
-                        } else if (strength >= 45) {
-                            str_id = 2;
-                        } else if (strength >= 30) {
-                            str_id = 1;
-                        }
-                        return "image://theme/icon-m-common-wlan-strength" + str_id;
+                if ((state == "online") || (state == "ready")) {
+                    return "connected";
+                } else if (state == "association" || state == "configuration") {
+                    return "connecting...";
+                } else {
+                    if (security == "none") {
+                        return "open";
+                    } else {
+                        return "secure";
+                    }
+                }
+            }
+
+            // TODO: subtitleColor / subtitleColorPressed bindings
+            // depending on state like in old delegate?
+            onClicked: {
+                console.log("clicked " + modelData.name);
+                if (modelData.state == "idle" || modelData.state == "failure") {
+                    modelData.requestConnect();
+                    networkingModel.networkName.text = modelData.name;
+                } else {
+                    console.log("Show network status page");
+                    for (var key in modelData.ipv4) {
+                        console.log(key + " -> " + modelData.ipv4[key]);
                     }
 
-                    titleText: modelData.name ? modelData.name : "(hidden network)"
-                    subtitleText: {
-                        var state = modelData.state;
-                        var security = modelData.security[0];
-
-                        if ((state == "online") || (state == "ready")) {
-                            return "connected";
-                        } else if (state == "association" || state == "configuration") {
-                            return "connecting...";
-                        } else {
-                            if (security == "none") {
-                                return "open";
-                            } else {
-                                return "secure";
-                            }
-                        }
-                    }
-
-                    // TODO: subtitleColor / subtitleColorPressed bindings
-                    // depending on state like in old delegate?
-                    onClicked: {
-                        console.log("clicked " + modelData.name);
-                        if (modelData.state == "idle" || modelData.state == "failure") {
-                            modelData.requestConnect();
-                            networkingModel.networkName.text = modelData.name;
-                        } else {
-                            console.log("Show network status page");
-                            for (var key in modelData.ipv4) {
-                                console.log(key + " -> " + modelData.ipv4[key]);
-                            }
-
-                            pageStack.openDialog(Qt.resolvedUrl("SettingsSheet.qml"), { network: modelData })
-                        }
-                    }
+                    pageStack.openDialog(Qt.resolvedUrl("SettingsSheet.qml"), { network: modelData })
                 }
             }
         }
     }
 
     ScrollDecorator {
-        flickableItem: flickable
+        flickableItem: networkList
     }
 
     InfoBanner {
