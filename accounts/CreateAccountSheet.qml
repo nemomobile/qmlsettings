@@ -31,31 +31,20 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.2
-import com.nokia.extras 1.1
+import com.nokia.extras 1.0
 import org.nemomobile.accounts 1.0
 import ".."
 
-Page {
-    tools: commonTools
-
-    ListView {
-        id: flickable
+Sheet {
+    acceptButtonText: "Create"
+    rejectButtonText: "Cancel"
+    content: ListView {
         anchors.fill: parent
-        model: AccountModel { }
-        delegate: DrilldownDelegate {
-            iconSource: model.accountIcon
+        anchors.margins: UiConstants.DefaultMargin
+        model: AccountProviderModel { }
+        delegate: ListDelegate {
+            iconSource: model.providerIcon
             titleText: model.providerDisplayName
-            subtitleText: model.accountDisplayName
         }
-
-        footer: DrilldownDelegate {
-            titleText: "Add account"
-            iconSource: "image://theme/icon-m-common-add"
-            onClicked: pageStack.openSheet(Qt.resolvedUrl("CreateAccountSheet.qml"))
-        }
-    }
-
-    ScrollDecorator {
-        flickableItem: flickable
     }
 }
