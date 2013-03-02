@@ -6,6 +6,7 @@
         <file>connectivity/ConnectivitySettings.qml</file>
         <file>connectivity/WirelessSettings.qml</file>
         <file>connectivity/SettingsSheet.qml</file>
+        <file>connectivity/NetworkSettingsSheet.qml</file>
         <file>connectivity/mustache.js</file>
         <file>accounts/AccountSettings.qml</file>
         <file>DrilldownDelegate.qml</file>
