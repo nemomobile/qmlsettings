@@ -75,6 +75,13 @@ PageStackWindow {
                 subtitle: "Change system time and date"
                 iconSource: "image://theme/icon-m-settings-time-date"
             }
+
+            ListElement {
+                page: "aboutdevice/AboutDeviceSettings.qml"
+                title: "About my device"
+                subtitle: "Information about your device"
+                iconSource: "image://theme/icon-m-settings-description"
+            }
         }
     }
 
