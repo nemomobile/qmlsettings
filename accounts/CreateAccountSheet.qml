@@ -36,15 +36,34 @@ import org.nemomobile.accounts 1.0
 import ".."
 
 Sheet {
+    id: sheet
     acceptButtonText: "Create"
     rejectButtonText: "Cancel"
-    content: ListView {
+    state: "stageOne"
+
+    property AccountModel accountModel
+    property variant provider: accountModel.provider(selectedProvider)
+    property string selectedProvider
+
+    // Stage one: pick a provider
+    ListView {
+        opacity: sheet.state == "stageOne" ? 1.0 : 0.0
         anchors.fill: parent
         anchors.margins: UiConstants.DefaultMargin
         model: AccountProviderModel { }
         delegate: ListDelegate {
             iconSource: model.providerIcon
             titleText: model.providerDisplayName
+            onClicked: {
+                sheet.selectedProvider = model.providerName
+                sheet.state = "stageTwo"
+            }
         }
+    }
+
+    // Stage two: provider-specific UI
+    Loader {
+        opacity: sheet.state == "stageTwo" ? 1.0 : 0.0
+        source: provider ? "file:///usr/share/accounts/ui/" + provider.name + ".qml" : ""
     }
 }

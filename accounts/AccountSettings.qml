@@ -41,7 +41,9 @@ Page {
     ListView {
         id: flickable
         anchors.fill: parent
-        model: AccountModel { }
+        model: AccountModel {
+            id: accountModel
+        }
         delegate: DrilldownDelegate {
             iconSource: model.accountIcon
             titleText: model.providerDisplayName
@@ -51,7 +53,7 @@ Page {
         footer: DrilldownDelegate {
             titleText: "Add account"
             iconSource: "image://theme/icon-m-common-add"
-            onClicked: pageStack.openSheet(Qt.resolvedUrl("CreateAccountSheet.qml"))
+            onClicked: pageStack.openSheet(Qt.resolvedUrl("CreateAccountSheet.qml"), { accountModel: accountModel })
         }
     }
 
