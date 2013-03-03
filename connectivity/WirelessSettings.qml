@@ -58,25 +58,29 @@ Page {
     Timer {
         id: scanTimer
         interval: 25000
-        running: networkingModel.wifiPowered
+        running: networkingModel.powered
         repeat: true
         triggeredOnStart: true
         onTriggered: networkingModel.requestScan();
     }
 
-    NetworkingModel {
+    TechnologyModel {
         id: networkingModel
+        name: "wifi"
         property bool sheetOpened
         property string networkName
 
         onTechnologiesChanged: {
-            scanTimer.running = networkingModel.wifiPowered;
+            scanTimer.running = networkingModel.powered;
         }
 
-        onWifiPoweredChanged: {
-            scanTimer.running = networkingModel.wifiPowered;
+        onPoweredChanged: {
+            scanTimer.running = networkingModel.powered;
         }
+    }
 
+    UserAgent {
+        id: userAgent
         onUserInputRequested: {
             scanTimer.running = false;
             scanTimer.triggeredOnStart = false;
@@ -106,6 +110,11 @@ Page {
             }
         }
 
+        onUserInputCanceled: {
+            // TODO
+            console.log("UserAgent::onUserInputCanceled: not handled");
+        }
+
         onErrorReported: {
             console.log("Got error from model: " + error);
             if (error == "invalid-key") {
@@ -127,7 +136,7 @@ Page {
         header: WirelessApplet { }
         anchors.margins: UiConstants.DefaultMargin
         anchors.fill: parent
-        model: networkingModel.networks
+        model: networkingModel
         delegate: ListDelegate {
             iconSource: {
                 var strength = modelData.strength;

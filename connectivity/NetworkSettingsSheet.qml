@@ -40,7 +40,7 @@ Sheet {
     property string mustacheView
 
     onRejected: {
-        networkingModel.sendUserReply({});
+        userAgent.sendUserReply({});
         pageStack.pop()
         scanTimer.running = true;
     }
@@ -53,7 +53,7 @@ Sheet {
         }
         pageStack.pop()
         scanTimer.running = true;
-        networkingModel.sendUserReply(fields);
+        userAgent.sendUserReply(fields);
     }
 
     content: Column {

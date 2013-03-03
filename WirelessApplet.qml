@@ -35,15 +35,16 @@ import com.meego.extras 1.0
 import MeeGo.Connman 0.2
 
 Applet {
-    NetworkingModel {
+    TechnologyModel {
         id: networkingModel
+        name: "wifi"
 
         onTechnologiesChanged: {
-            wifiSwitch.checked = networkingModel.wifiPowered
+            wifiSwitch.checked = networkingModel.powered
         }
 
-        onWifiPoweredChanged: {
-            wifiSwitch.checked = networkingModel.wifiPowered
+        onPoweredChanged: {
+            wifiSwitch.checked = networkingModel.powered
         }
     }
 
@@ -56,10 +57,10 @@ Applet {
         id: wifiSwitch
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
-        checked: networkingModel.wifiPowered
+        checked: networkingModel.powered
         enabled: networkingModel.available
         onCheckedChanged: {
-            networkingModel.wifiPowered = wifiSwitch.checked
+            networkingModel.powered = wifiSwitch.checked
         }
     }
 }
