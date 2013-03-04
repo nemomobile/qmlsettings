@@ -100,11 +100,6 @@ Page {
             }
         }
 
-        onUserInputCanceled: {
-            // TODO
-            console.log("UserAgent::onUserInputCanceled: not handled");
-        }
-
         onErrorReported: {
             console.log("Got error from model: " + error);
             if (error == "invalid-key") {

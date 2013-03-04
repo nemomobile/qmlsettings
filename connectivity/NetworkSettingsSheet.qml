@@ -59,7 +59,13 @@ Sheet {
         networkPage.acceptButtonEnabled = isDoneEnabled;
     }
 
-
+    Connections {
+        target: userAgent
+        onUserInputCanceled: {
+            console.log("qmlsettings: UserAgent cancelled user input request");
+            networkPage.reject()
+        }
+    }
 
     onRejected: {
         userAgent.sendUserReply({});
