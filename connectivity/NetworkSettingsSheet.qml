@@ -34,24 +34,44 @@ import QtQuick 1.1
 import com.nokia.meego 1.2
 import com.meego.extras 1.0
 import MeeGo.Connman 0.2
+import "mustache.js" as M
 
 Sheet {
     id: networkPage
-    property string mustacheView
+    property variant mustacheView
+    property UserAgent userAgent
+    property Timer scanTimer
+    acceptButtonText: "Connect"
+    rejectButtonText: "Cancel"
+
+    property variant netfields: {}
+
+    function handleInput(key, value) {
+        var dict = networkPage.netfields;
+        var isDoneEnabled = false;
+        console.log("Received from TextField " + key + " " + value);
+        dict[key] = value;
+        networkPage.netfields = dict;
+        for (var id in networkPage.netfields) {
+            console.log(id + "-> " + networkPage.netfields[id]);
+            isDoneEnabled = isDoneEnabled || networkPage.netfields[id].length;
+        }
+        networkPage.acceptButtonEnabled = isDoneEnabled;
+    }
+
+
 
     onRejected: {
         userAgent.sendUserReply({});
-        pageStack.pop()
         scanTimer.running = true;
     }
 
     onAccepted: {
         console.log('clicked Done ' + 'x:' + x + ' y:' + y);
-        var fields = mainWindow.netfields;
+        var fields = networkPage.netfields;
         for (var key in fields) {
             console.log(key + " --> " + fields[key]);
         }
-        pageStack.pop()
         scanTimer.running = true;
         userAgent.sendUserReply(fields);
     }
@@ -107,9 +127,13 @@ Sheet {
                 }
             "
             Component.onCompleted: {
+                console.log(mustacheView)
+                console.log(form_tpl)
                 // TODO: can we replace mustache with just regular old bindings?
                 var output = M.Mustache.render(form_tpl, mustacheView);
+                console.log("Creating " + output)
                 var form = Qt.createQmlObject(output, dynFields, "dynamicForm1");
+                console.log("Created " + form)
             }
         }
     }

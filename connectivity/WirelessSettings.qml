@@ -40,21 +40,6 @@ Page {
     id: mainWindow
     tools: commonTools
 
-    property variant netfields: {}
-
-    function handleInput(key, value) {
-        var dict = mainWindow.netfields;
-        var isDoneEnabled = false;
-        console.log("Received from TextField " + key + " " + value);
-        dict[key] = value;
-        mainWindow.netfields = dict;
-        for (var id in mainWindow.netfields) {
-            console.log(id + "-> " + mainWindow.netfields[id]);
-            isDoneEnabled = isDoneEnabled || mainWindow.netfields[id].length;
-        }
-        doneButton.enabled = isDoneEnabled;
-    }
-
     Timer {
         id: scanTimer
         interval: 25000
@@ -100,11 +85,16 @@ Page {
                     console.log("    " + inkey + ": " + fields[key][inkey]);
                 }
             }
-            if (!sheetOpened) {
-                sheetOpened = true
-                var sheet = pageStack.openSheet(Qt.resolvedUrl("NetworkSettings.qml"), { mustacheView: view, networkName: networkName })
-                sheet.accepted.connect(function() { sheetOpened = false })
-                sheet.rejected.connect(function() { sheetOpened = false })
+            if (!networkingModel.sheetOpened) {
+                networkingModel.sheetOpened = true
+                var sheet = pageStack.openSheet(Qt.resolvedUrl("NetworkSettingsSheet.qml"), {
+                    mustacheView: view,
+                    networkName: networkingModel.networkName,
+                    userAgent: userAgent,
+                    scanTimer: scanTimer
+                })
+                sheet.accepted.connect(function() { networkingModel.sheetOpened = false })
+                sheet.rejected.connect(function() { networkingModel.sheetOpened = false })
                 // TODO: there was code that checked for pageStack.busy and
                 // didn't open if it was true. What was that about?
             }
