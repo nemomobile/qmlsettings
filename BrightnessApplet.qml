@@ -31,6 +31,7 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.2
+import org.nemomobile.systemsettings 1.0
 
 Applet {
     Image {
@@ -40,15 +41,21 @@ Applet {
         anchors.verticalCenter: brightnessSlider.verticalCenter
     }
 
+    DisplaySettings {
+        id: displaySettings
+    }
+
     Slider {
         id: brightnessSlider
         stepSize: 1
         minimumValue: 0
-        maximumValue: 100
+        maximumValue: displaySettings.maximumBrightness
         anchors.left: brightnessLow.right
         anchors.right: brightnessHigh.left
+        value: displaySettings.brightness
+        Component.onCompleted: value = displaySettings.brightness // break the binding so setting works ok
         onValueChanged: {
-            console.log("Brightness changed: " + value)
+            displaySettings.brightness = value
         }
     }
 
