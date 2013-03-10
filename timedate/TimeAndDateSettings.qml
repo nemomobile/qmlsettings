@@ -33,6 +33,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.2
 import com.nokia.extras 1.1
 import org.nemomobile.time 1.0
+import org.nemomobile.systemsettings 1.0
 import ".."
 
 Page {
@@ -41,6 +42,10 @@ Page {
     WallClock {
         id: wallClock
         updateFrequency: WallClock.Minute
+    }
+
+    DateTimeSettings {
+        id: dateTimeSettings
     }
 
     Flickable {
@@ -73,10 +78,16 @@ Page {
     TimePickerDialog {
         id: timePicker
         titleText: "Set device time"
+        onAccepted: {
+            dateTimeSettings.setTime(timePicker.hour, timePicker.minute)
+        }
     }
 
     DatePickerDialog {
         id: datePicker
         titleText: "Set device date"
+        onAccepted: {
+            dateTimeSettings.setDate(new Date(datePicker.year, datePicker.month - 1, datePicker.day))
+        }
     }
 }
