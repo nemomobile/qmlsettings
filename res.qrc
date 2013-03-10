@@ -3,6 +3,7 @@
         <file>main.qml</file>
         <file>ListPage.qml</file>
         <file>timedate/TimeAndDateSettings.qml</file>
+        <file>timedate/AutomaticTimeUpdateApplet.qml</file>
         <file>connectivity/ConnectivitySettings.qml</file>
         <file>connectivity/WirelessSettings.qml</file>
         <file>connectivity/SettingsSheet.qml</file>

@@ -56,9 +56,16 @@ Page {
         Column {
             anchors.fill: parent
 
+            AutomaticTimeUpdateApplet {
+                id: autoTimeUpdate
+                x: UiConstants.DefaultMargin
+                width: parent.width - UiConstants.DefaultMargin * 2
+            }
+
             DrilldownDelegate {
                 titleText: "Time"
                 subtitleText: Qt.formatTime(wallClock.time)
+                enabled: !autoTimeUpdate.enabled
 
                 onClicked: {
                     timePicker.hour = wallClock.time.getHours()
@@ -71,6 +78,7 @@ Page {
             DrilldownDelegate {
                 titleText: "Date"
                 subtitleText: Qt.formatDate(wallClock.time)
+                enabled: !autoTimeUpdate.enabled
 
                 onClicked: {
                     datePicker.day = wallClock.time.getDate()
