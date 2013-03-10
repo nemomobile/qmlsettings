@@ -60,14 +60,24 @@ Page {
                 titleText: "Time"
                 subtitleText: Qt.formatTime(wallClock.time)
 
-                onClicked: timePicker.open()
+                onClicked: {
+                    timePicker.hour = wallClock.time.getHours()
+                    timePicker.minute = wallClock.time.getMinutes()
+                    timePicker.second = wallClock.time.getSeconds()
+                    timePicker.open()
+                }
             }
 
             DrilldownDelegate {
                 titleText: "Date"
                 subtitleText: Qt.formatDate(wallClock.time)
 
-                onClicked: datePicker.open()
+                onClicked: {
+                    datePicker.day = wallClock.time.getDate()
+                    datePicker.month = wallClock.time.getMonth() + 1
+                    datePicker.year = wallClock.time.getFullYear()
+                    datePicker.open()
+                }
             }
         }
     }
