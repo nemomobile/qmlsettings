@@ -14,6 +14,7 @@ Requires:
     - qt-components
     - nemo-qml-plugins-time
     - nemo-qml-plugins-accounts
+    - nemo-qml-plugins-systemsettings
 Configure: none
 Builder: qmake
 Files:

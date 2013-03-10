@@ -19,6 +19,7 @@ Source100:  qmlsettings.yaml
 Requires:   qt-components
 Requires:   nemo-qml-plugins-time
 Requires:   nemo-qml-plugins-accounts
+Requires:   nemo-qml-plugins-systemsettings
 BuildRequires:  pkgconfig(QtDeclarative)
 BuildRequires:  desktop-file-utils
 
