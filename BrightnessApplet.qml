@@ -48,14 +48,14 @@ Applet {
     Slider {
         id: brightnessSlider
         stepSize: 1
-        minimumValue: 0
+        minimumValue: 1
         maximumValue: displaySettings.maximumBrightness
         anchors.left: brightnessLow.right
         anchors.right: brightnessHigh.left
         value: displaySettings.brightness
         Component.onCompleted: value = displaySettings.brightness // break the binding so setting works ok
         onValueChanged: {
-            displaySettings.brightness = value
+            displaySettings.brightness = Math.round(value)
         }
     }
 
