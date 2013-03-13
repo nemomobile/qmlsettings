@@ -77,6 +77,13 @@ PageStackWindow {
             }
 
             ListElement {
+                page: "usb/USBModeSettings.qml"
+                title: "USB mode"
+                subtitle: "Choose what USB does"
+                iconSource: "image://theme/nemo-cp-power-usb"
+            }
+
+            ListElement {
                 page: "aboutdevice/AboutDeviceSettings.qml"
                 title: "About my device"
                 subtitle: "Information about your device"
