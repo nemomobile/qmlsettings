@@ -15,8 +15,16 @@ Requires:
     - nemo-qml-plugin-time
     - nemo-qml-plugin-accounts
     - nemo-qml-plugin-systemsettings
+    - nemo-qml-plugin-signon
 Configure: none
 Builder: qmake
 Files:
     - "%{_bindir}/%{name}"
     - "%{_datadir}/applications/%{name}.desktop"
+
+SubPackages:
+    - Name: account-plugin-email
+      Summary: Generic email account plugin for email
+      Group: Applications/System
+      Files:
+          - "%{_datadir}/accounts/ui/GenericProvider.qml"

@@ -15,3 +15,6 @@ desktop.path = /usr/share/applications
 desktop.files = qmlsettings.desktop
 INSTALLS += desktop
 
+providers.files = accounts/providers/*
+providers.path = /usr/share/accounts/ui/
+INSTALLS += providers

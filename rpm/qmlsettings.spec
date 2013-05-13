@@ -20,11 +20,20 @@ Requires:   qt-components
 Requires:   nemo-qml-plugin-time
 Requires:   nemo-qml-plugin-accounts
 Requires:   nemo-qml-plugin-systemsettings
+Requires:   nemo-qml-plugin-signon
 BuildRequires:  pkgconfig(QtDeclarative)
 BuildRequires:  desktop-file-utils
 
 %description
 Settings application written using QML.
+
+%package account-plugin-email
+Summary:    Generic email account plugin for email
+Group:      Applications/System
+Requires:   %{name} = %{version}-%{release}
+
+%description account-plugin-email
+%{summary}.
 
 %prep
 %setup -q -n %{name}-%{version}
@@ -62,3 +71,9 @@ desktop-file-install --delete-original       \
 %{_datadir}/applications/%{name}.desktop
 # >> files
 # << files
+
+%files account-plugin-email
+%defattr(-,root,root,-)
+%{_datadir}/accounts/ui/GenericProvider.qml
+# >> files account-plugin-email
+# << files account-plugin-email

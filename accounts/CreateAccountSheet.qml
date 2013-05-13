@@ -61,9 +61,25 @@ Sheet {
         }
     }
 
-    // Stage two: provider-specific UI
-    Loader {
-        opacity: sheet.state == "stageTwo" ? 1.0 : 0.0
-        source: provider ? "file:///usr/share/accounts/ui/" + provider.name + ".qml" : ""
+    Connections {
+        target: sheet
+        onStateChanged: {
+            if (sheet.state == "stageTwo") {
+                var componentFileName = "file:///usr/share/accounts/ui/" + provider.name + ".qml"
+                var comp = Qt.createComponent(componentFileName)
+                // TODO: cleanup
+                if (comp.status === Component.Ready) {
+                    var newsheet = comp.createObject(root, {
+                            "provider": provider
+                    })
+                    if (newsheet === null) {
+                        throw new Error("Error: cannot load instance of " + componentFileName + ":" + comp.errorString())
+                    }
+                    newsheet.open()
+                } else {
+                    throw new Error("Error: cannot load component file " + componentFileName + ":" + comp.errorString())
+                }
+            }
+        }
     }
 }

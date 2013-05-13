@@ -44,10 +44,17 @@ Page {
         model: AccountModel {
             id: accountModel
         }
+        AccountManager {
+            id: accountManager
+        }
         delegate: DrilldownDelegate {
             iconSource: model.accountIcon
             titleText: model.providerDisplayName
             subtitleText: model.accountDisplayName
+
+            onPressAndHold: {
+                accountManager.removeAccount(accountManager.account(model.accountId))
+            }
         }
 
         footer: DrilldownDelegate {
