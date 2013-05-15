@@ -23,6 +23,62 @@ Requires:   nemo-qml-plugin-systemsettings
 Requires:   nemo-qml-plugin-signon
 BuildRequires:  pkgconfig(QtDeclarative)
 BuildRequires:  desktop-file-utils
+Provides:   meegotouch-controlpanel > 0.14.7.1
+Provides:   meegotouch-controlpanel-l10n-engineering-english > 0.14.7.1
+Provides:   meegotouchcp-about > 0.21.14
+Provides:   meegotouchcp-bluetooth > 0.0.9
+Provides:   meegotouchcp-bluetooth-libmeegobluetooth > 0.0.9
+Provides:   meegotouchcp-cellular > 0.0.1
+Provides:   meegotouchcp-connman > 0.2.5
+Provides:   meegotouchcp-datetime > 0.10.8
+Provides:   meegotouchcp-display > 0.21.14
+Provides:   meegotouchcp-gprs > 0.21.14
+Provides:   meegotouchcp-language > 0.11.3
+Provides:   meegotouchcp-offline > 0.21.14
+Provides:   meegotouchcp-privatemodeapplet > 1.5.8
+Provides:   meegotouchcp-regionformat > 0.5.3
+Provides:   meegotouchcp-reset > 0.21.14
+Provides:   meegotouchcp-skeleton > 0.14.7
+Provides:   meegotouchcp-sound > 0.21.14
+Provides:   meegotouchcp-test > 0.21.14
+Provides:   meegotouchcp-theme > 0.21.14
+Provides:   meegotouchcp-usb > 0.21.14
+Provides:   meegotouchcp-wallpaper > 0.21.14
+Provides:   meegotouchcp-warranty > 0.21.14
+Provides:   meegotouchcp-regionformat-l10n-engineering-english > 0.5.3
+Provides:   meegotouchcp-language-l10n-engineering-english > 0.11.3
+Provides:   meegotouchcp-datetime-l10n-engineering-english > 0.10.8
+Provides:   nemo-control-panel-applet-power > 0.1.2
+Provides:   libmeegocontrolpanel > 0.14.7.1
+Provides:   meegotouch-controlpanelapplets > 0.21.14
+Obsoletes:   meegotouch-controlpanel <= 0.14.7.1
+Obsoletes:   meegotouch-controlpanel-l10n-engineering-english <= 0.14.7.1
+Obsoletes:   meegotouchcp-about <= 0.21.14
+Obsoletes:   meegotouchcp-bluetooth <= 0.0.9
+Obsoletes:   meegotouchcp-bluetooth-libmeegobluetooth <= 0.0.9
+Obsoletes:   meegotouchcp-cellular <= 0.0.1
+Obsoletes:   meegotouchcp-connman <= 0.2.5
+Obsoletes:   meegotouchcp-datetime <= 0.10.8
+Obsoletes:   meegotouchcp-display <= 0.21.14
+Obsoletes:   meegotouchcp-gprs <= 0.21.14
+Obsoletes:   meegotouchcp-language <= 0.11.3
+Obsoletes:   meegotouchcp-offline <= 0.21.14
+Obsoletes:   meegotouchcp-privatemodeapplet <= 1.5.8
+Obsoletes:   meegotouchcp-regionformat <= 0.5.3
+Obsoletes:   meegotouchcp-reset <= 0.21.14
+Obsoletes:   meegotouchcp-skeleton <= 0.14.7
+Obsoletes:   meegotouchcp-sound <= 0.21.14
+Obsoletes:   meegotouchcp-test <= 0.21.14
+Obsoletes:   meegotouchcp-theme <= 0.21.14
+Obsoletes:   meegotouchcp-usb <= 0.21.14
+Obsoletes:   meegotouchcp-wallpaper <= 0.21.14
+Obsoletes:   meegotouchcp-warranty <= 0.21.14
+Obsoletes:   meegotouchcp-regionformat-l10n-engineering-english <= 0.5.3
+Obsoletes:   meegotouchcp-language-l10n-engineering-english <= 0.11.3
+Obsoletes:   meegotouchcp-datetime-l10n-engineering-english <= 0.10.8
+Obsoletes:   nemo-control-panel-applet-power <= 0.1.2
+Obsoletes:   libmeegocontrolpanel <= 0.14.7.1
+Obsoletes:   meegotouch-controlpanelapplets <= 0.21.14
 
 %description
 Settings application written using QML.

@@ -22,6 +22,71 @@ Files:
     - "%{_bindir}/%{name}"
     - "%{_datadir}/applications/%{name}.desktop"
 
+# get ready for it
+Provides:
+# waiting for gtalk configuation plugin first
+#    - accounts-ui > 0.0.2
+    - meegotouch-controlpanel > 0.14.7.1
+    - meegotouch-controlpanel-l10n-engineering-english > 0.14.7.1
+    - meegotouchcp-about > 0.21.14
+    - meegotouchcp-bluetooth > 0.0.9
+    - meegotouchcp-bluetooth-libmeegobluetooth > 0.0.9
+    - meegotouchcp-cellular > 0.0.1
+    - meegotouchcp-connman > 0.2.5
+    - meegotouchcp-datetime > 0.10.8
+    - meegotouchcp-display > 0.21.14
+    - meegotouchcp-gprs > 0.21.14
+    - meegotouchcp-language > 0.11.3
+    - meegotouchcp-offline > 0.21.14
+    - meegotouchcp-privatemodeapplet > 1.5.8
+    - meegotouchcp-regionformat > 0.5.3
+    - meegotouchcp-reset > 0.21.14
+    - meegotouchcp-skeleton > 0.14.7
+    - meegotouchcp-sound > 0.21.14
+    - meegotouchcp-test > 0.21.14
+    - meegotouchcp-theme > 0.21.14
+    - meegotouchcp-usb > 0.21.14
+    - meegotouchcp-wallpaper > 0.21.14
+    - meegotouchcp-warranty > 0.21.14
+    - meegotouchcp-regionformat-l10n-engineering-english > 0.5.3
+    - meegotouchcp-language-l10n-engineering-english > 0.11.3
+    - meegotouchcp-datetime-l10n-engineering-english > 0.10.8
+    - nemo-control-panel-applet-power > 0.1.2
+    - libmeegocontrolpanel > 0.14.7.1
+    - meegotouch-controlpanelapplets > 0.21.14
+
+
+Obsoletes:
+#    - accounts-ui <= 0.0.2
+    - meegotouch-controlpanel <= 0.14.7.1
+    - meegotouch-controlpanel-l10n-engineering-english <= 0.14.7.1
+    - meegotouchcp-about <= 0.21.14
+    - meegotouchcp-bluetooth <= 0.0.9
+    - meegotouchcp-bluetooth-libmeegobluetooth <= 0.0.9
+    - meegotouchcp-cellular <= 0.0.1
+    - meegotouchcp-connman <= 0.2.5
+    - meegotouchcp-datetime <= 0.10.8
+    - meegotouchcp-display <= 0.21.14
+    - meegotouchcp-gprs <= 0.21.14
+    - meegotouchcp-language <= 0.11.3
+    - meegotouchcp-offline <= 0.21.14
+    - meegotouchcp-privatemodeapplet <= 1.5.8
+    - meegotouchcp-regionformat <= 0.5.3
+    - meegotouchcp-reset <= 0.21.14
+    - meegotouchcp-skeleton <= 0.14.7
+    - meegotouchcp-sound <= 0.21.14
+    - meegotouchcp-test <= 0.21.14
+    - meegotouchcp-theme <= 0.21.14
+    - meegotouchcp-usb <= 0.21.14
+    - meegotouchcp-wallpaper <= 0.21.14
+    - meegotouchcp-warranty <= 0.21.14
+    - meegotouchcp-regionformat-l10n-engineering-english <= 0.5.3
+    - meegotouchcp-language-l10n-engineering-english <= 0.11.3
+    - meegotouchcp-datetime-l10n-engineering-english <= 0.10.8
+    - nemo-control-panel-applet-power <= 0.1.2
+    - libmeegocontrolpanel <= 0.14.7.1
+    - meegotouch-controlpanelapplets <= 0.21.14
+
 SubPackages:
     - Name: account-plugin-email
       Summary: Generic email account plugin for email
