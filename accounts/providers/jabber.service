@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<service id="jabber">
+    <type>IM</type>
+    <provider>jabber</provider>
+    <name>Jabber IM</name>
+    <icon>image://theme/icon-s-common-jabber</icon>
+
+    <!-- default settings (account settings have precedence over these) -->
+    <template>
+        <group name="telepathy">
+            <setting name="manager">gabble</setting>
+            <setting name="protocol">jabber</setting>
+            <setting name="ConnectAutomatically" type="b">true</setting>
+            <setting name="port" type="i">5223</setting>
+            <setting name="old-ssl" type="b">true</setting>
+            <setting name="fallback-conference-server">conference.jabber.org</setting>
+        </group>
+
+        <group name="auth">
+            <setting name="method">password</setting>
+            <setting name="mechanism">password</setting>
+        </group>
+    </template>
+</service>

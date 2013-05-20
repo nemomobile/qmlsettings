@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE provider>
+<provider version="1.0" id="jabber">
+    <name>Jabber</name>
+    <description>Jabber account provider</description>
+    <icon>image://theme/icon-s-common-jabber</icon>
+</provider>
