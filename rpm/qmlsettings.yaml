@@ -16,6 +16,8 @@ Requires:
     - nemo-qml-plugin-accounts
     - nemo-qml-plugin-systemsettings
     - nemo-qml-plugin-signon
+    - telepathy-accounts-signon >= 0.0.7
+
 Configure: none
 Builder: qmake
 Files:
@@ -24,8 +26,7 @@ Files:
 
 # get ready for it
 Provides:
-# waiting for gtalk configuation plugin first
-#    - accounts-ui > 0.0.2
+    - accounts-ui > 0.0.2
     - meegotouch-controlpanel > 0.14.7.1
     - meegotouch-controlpanel-l10n-engineering-english > 0.14.7.1
     - meegotouchcp-about > 0.21.14
@@ -57,7 +58,7 @@ Provides:
 
 
 Obsoletes:
-#    - accounts-ui <= 0.0.2
+    - accounts-ui <= 0.0.2
     - meegotouch-controlpanel <= 0.14.7.1
     - meegotouch-controlpanel-l10n-engineering-english <= 0.14.7.1
     - meegotouchcp-about <= 0.21.14
@@ -92,4 +93,13 @@ SubPackages:
       Summary: Generic email account plugin for email
       Group: Applications/System
       Files:
-          - "%{_datadir}/accounts/ui/GenericProvider.qml"
+      - "%{_datadir}/accounts/ui/GenericProvider.qml"
+
+    - Name: account-plugin-jabber
+      Summary: Jabber account plugin
+      Group: Applications/System
+      Files:
+          - "%{_datadir}/accounts/providers/jabber.provider"
+          - "%{_datadir}/accounts/services/jabber.service"
+          - "%{_datadir}/accounts/ui/jabber.qml"
+

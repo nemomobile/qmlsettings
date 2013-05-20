@@ -21,8 +21,10 @@ Requires:   nemo-qml-plugin-time
 Requires:   nemo-qml-plugin-accounts
 Requires:   nemo-qml-plugin-systemsettings
 Requires:   nemo-qml-plugin-signon
+Requires:   telepathy-accounts-signon >= 0.0.7
 BuildRequires:  pkgconfig(QtDeclarative)
 BuildRequires:  desktop-file-utils
+Provides:   accounts-ui > 0.0.2
 Provides:   meegotouch-controlpanel > 0.14.7.1
 Provides:   meegotouch-controlpanel-l10n-engineering-english > 0.14.7.1
 Provides:   meegotouchcp-about > 0.21.14
@@ -51,6 +53,7 @@ Provides:   meegotouchcp-datetime-l10n-engineering-english > 0.10.8
 Provides:   nemo-control-panel-applet-power > 0.1.2
 Provides:   libmeegocontrolpanel > 0.14.7.1
 Provides:   meegotouch-controlpanelapplets > 0.21.14
+Obsoletes:   accounts-ui <= 0.0.2
 Obsoletes:   meegotouch-controlpanel <= 0.14.7.1
 Obsoletes:   meegotouch-controlpanel-l10n-engineering-english <= 0.14.7.1
 Obsoletes:   meegotouchcp-about <= 0.21.14
@@ -89,6 +92,14 @@ Group:      Applications/System
 Requires:   %{name} = %{version}-%{release}
 
 %description account-plugin-email
+%{summary}.
+
+%package account-plugin-jabber
+Summary:    Jabber account plugin
+Group:      Applications/System
+Requires:   %{name} = %{version}-%{release}
+
+%description account-plugin-jabber
 %{summary}.
 
 %prep
@@ -133,3 +144,11 @@ desktop-file-install --delete-original       \
 %{_datadir}/accounts/ui/GenericProvider.qml
 # >> files account-plugin-email
 # << files account-plugin-email
+
+%files account-plugin-jabber
+%defattr(-,root,root,-)
+%{_datadir}/accounts/providers/jabber.provider
+%{_datadir}/accounts/services/jabber.service
+%{_datadir}/accounts/ui/jabber.qml
+# >> files account-plugin-jabber
+# << files account-plugin-jabber
