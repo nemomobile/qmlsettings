@@ -53,6 +53,7 @@ Provides:   meegotouchcp-datetime-l10n-engineering-english > 0.10.8
 Provides:   nemo-control-panel-applet-power > 0.1.2
 Provides:   libmeegocontrolpanel > 0.14.7.1
 Provides:   meegotouch-controlpanelapplets > 0.21.14
+Provides:   meegotouchcp-battery > 0.21.13
 Obsoletes:   accounts-ui <= 0.0.2
 Obsoletes:   meegotouch-controlpanel <= 0.14.7.1
 Obsoletes:   meegotouch-controlpanel-l10n-engineering-english <= 0.14.7.1
@@ -82,6 +83,7 @@ Obsoletes:   meegotouchcp-datetime-l10n-engineering-english <= 0.10.8
 Obsoletes:   nemo-control-panel-applet-power <= 0.1.2
 Obsoletes:   libmeegocontrolpanel <= 0.14.7.1
 Obsoletes:   meegotouch-controlpanelapplets <= 0.21.14
+Obsoletes:   meegotouchcp-battery <= 0.21.13
 
 %description
 Settings application written using QML.
