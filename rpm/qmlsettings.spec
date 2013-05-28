@@ -22,6 +22,7 @@ Requires:   nemo-qml-plugin-accounts
 Requires:   nemo-qml-plugin-systemsettings
 Requires:   nemo-qml-plugin-signon
 Requires:   telepathy-accounts-signon >= 0.0.7
+Requires:   connman-qt-declarative
 BuildRequires:  pkgconfig(QtDeclarative)
 BuildRequires:  desktop-file-utils
 Provides:   accounts-ui > 0.0.2

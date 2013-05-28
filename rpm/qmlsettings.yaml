@@ -17,6 +17,7 @@ Requires:
     - nemo-qml-plugin-systemsettings
     - nemo-qml-plugin-signon
     - telepathy-accounts-signon >= 0.0.7
+    - connman-qt-declarative
 
 Configure: none
 Builder: qmake
