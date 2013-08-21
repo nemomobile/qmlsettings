@@ -2,6 +2,6 @@
 Type=Application
 Name=Settings
 Categories=Applications
-Exec=invoker --type=e --single-instance /usr/bin/qmlsettings
+Exec=/usr/bin/invoker --single-instance -r 5 --type=qt-components-qt5 /usr/bin/qmlsettings
 Icon=icon-l-settings
 
