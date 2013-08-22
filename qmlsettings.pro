@@ -1,4 +1,4 @@
-QT += declarative
+QT += qml quick
 
 TEMPLATE = app
 

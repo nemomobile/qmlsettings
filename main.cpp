@@ -1,18 +1,33 @@
-#include <QDeclarativeView>
-#include <QDeclarativeEngine>
-#include <QApplication>
+#include <QQuickView>
+#include <QQmlEngine>
+#include <QGuiApplication>
+#include <QDebug>
 
+#ifdef HAS_BOOSTER
+#include <MDeclarativeCache>
+#endif
+
+#ifdef HAS_BOOSTER
+Q_DECL_EXPORT
+#endif
 int main(int argc, char **argv)
 {
-    QApplication a(argc, argv);
-    QDeclarativeView view;
-    QObject::connect(view.engine(), SIGNAL(quit()), &a, SLOT(quit()));
-    view.setSource(QUrl("qrc:/qml/main.qml"));
-    view.setResizeMode(QDeclarativeView::SizeRootObjectToView);
-    view.showFullScreen();
-    view.setAttribute(Qt::WA_OpaquePaintEvent);
-    view.setAttribute(Qt::WA_NoSystemBackground);
-    view.viewport()->setAttribute(Qt::WA_OpaquePaintEvent);
-    view.viewport()->setAttribute(Qt::WA_NoSystemBackground);
-    return a.exec();
+    QGuiApplication* application;
+    QQuickView* view;
+#ifdef HAS_BOOSTER
+    application = MDeclarativeCache::qApplication(argc, argv);
+    view = MDeclarativeCache::qQuickView();
+#else
+    qWarning() << Q_FUNC_INFO << "Warning! Running without booster. This may be a bit slower.";
+    QGuiApplication stackApp(argc, argv);
+    QQuickView stackView;
+    application = &stackApp;
+    view = &stackView;
+#endif
+
+    QObject::connect(view->engine(), SIGNAL(quit()), application, SLOT(quit()));
+    view->setSource(QUrl("qrc:/qml/main.qml"));
+    view->setResizeMode(QQuickView::SizeRootObjectToView);
+    view->showFullScreen();
+    return application->exec();
 }

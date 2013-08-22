@@ -38,8 +38,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 1.1
-import com.nokia.meego 1.2
+import QtQuick 2.0
+import com.nokia.meego 2.0
 /*
  * Copyright (C) 2013 Robin Burchell <robin+mer@viroteck.net>
  *
@@ -70,8 +70,6 @@ import com.nokia.meego 1.2
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
  */
-
-import com.nokia.extras 1.1
 
 Page {
     id: listPage

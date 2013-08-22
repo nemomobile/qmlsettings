@@ -1,5 +1,5 @@
-import QtQuick 1.1
-import com.nokia.meego 1.0
+import QtQuick 2.0
+import com.nokia.meego 2.0
 import com.nokia.controlpanel 0.1
 import MeeGo.Connman 0.2
 
