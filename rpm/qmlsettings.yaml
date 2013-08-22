@@ -9,18 +9,20 @@ Sources:
     - "%{name}-%{version}.tar.bz2"
 Description: Settings application written using QML.
 PkgConfigBR:
-    - QtDeclarative
+    - Qt5Qml
+    - qdeclarative5-boostable
+    - Qt5Quick
 Requires:
-    - qt-components
-    - nemo-qml-plugin-time
-    - nemo-qml-plugin-accounts
+    - qt-components-qt5
+    - nemo-qml-plugin-time-qt5
+    - nemo-qml-plugin-accounts-qt5
     - nemo-qml-plugin-systemsettings
-    - nemo-qml-plugin-signon
+    - nemo-qml-plugin-signon-qt5
     - telepathy-accounts-signon >= 0.0.7
-    - connman-qt-declarative
+    - connman-qt5-declarative
 
 Configure: none
-Builder: qmake
+Builder: qmake5
 Files:
     - "%{_bindir}/%{name}"
     - "%{_datadir}/applications/%{name}.desktop"

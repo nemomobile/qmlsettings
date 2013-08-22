@@ -29,8 +29,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
  */
 
-import QtQuick 1.1
-import com.nokia.meego 1.2
+import QtQuick 2.0
+import com.nokia.meego 2.0
 import org.nemomobile.systemsettings 1.0
 import ".."
 
@@ -42,23 +42,23 @@ Page {
         MenuLayout {
             MenuItem {
                 text: "Default mode: ask"
-                onClicked: usbSettings.defaultMode = USBSettings.AskMode
+                onClicked: usbSettings.defaultMode = USBSettings.Ask
             }
             MenuItem {
                 text: "Default mode: mass storage"
-                onClicked: usbSettings.defaultMode = USBSettings.MassStorageMode
+                onClicked: usbSettings.defaultMode = USBSettings.MassStorage
             }
             MenuItem {
                 text: "Default mode: developer mode"
-                onClicked: usbSettings.defaultMode = USBSettings.DeveloperMode
+                onClicked: usbSettings.defaultMode = USBSettings.Developer
             }
             MenuItem {
                 text: "Default mode: MTP"
-                onClicked: usbSettings.defaultMode = USBSettings.MTPMode
+                onClicked: usbSettings.defaultMode = USBSettings.MTP
             }
             MenuItem {
                 text: "Default mode: charging only"
-                onClicked: usbSettings.defaultMode = USBSettings.ChargingMode
+                onClicked: usbSettings.defaultMode = USBSettings.ChargingOnly
             }
         }
     }
@@ -80,14 +80,16 @@ Page {
             Label {
                 text: {
                     switch (usbSettings.currentMode) {
-                        case USBSettings.MassStorageMode:
+                        case USBSettings.MassStorage:
                             return "Mass storage in use"
-                        case USBSettings.DeveloperMode:
+                        case USBSettings.Developer:
                             return "Developer mode in use"
-                        case USBSettings.MTPMode:
+                        case USBSettings.MTP:
                             return "Media Transfer Protocol mode in use"
-                        case USBSettings.ChargingMode:
+                        case USBSettings.ChargingOnly:
                             return "Charging only"
+                        default:
+                            return "Unknown mode"
                     }
                 }
             }
@@ -96,16 +98,18 @@ Page {
                 width: parent.width
                 text: {
                     switch (usbSettings.defaultMode) {
-                    case USBSettings.AskMode:
+                    case USBSettings.Ask:
                         return "Default mode: ask"
-                    case USBSettings.MassStorageMode:
+                    case USBSettings.MassStorage:
                         return "Default mode: mass storage"
-                    case USBSettings.DeveloperMode:
+                    case USBSettings.Developer:
                         return "Default mode: developer mode"
-                    case USBSettings.MTPMode:
+                    case USBSettings.MTP:
                         return "Default mode: MTP"
-                    case USBSettings.ChargingMode:
+                    case USBSettings.ChargingOnly:
                         return "Default mode: charging only"
+                    default:
+                        return "Unknown mode"
                     }
                 }
 
