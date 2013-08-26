@@ -20,7 +20,7 @@ Requires:
     - nemo-qml-plugin-signon-qt5
     - telepathy-accounts-signon >= 0.0.7
     - connman-qt5-declarative
-
+    - mapplauncherd-booster-qtcomponents-qt5
 Configure: none
 Builder: qmake5
 Files:
