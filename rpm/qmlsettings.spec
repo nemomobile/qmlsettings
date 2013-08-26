@@ -23,7 +23,9 @@ Requires:   nemo-qml-plugin-systemsettings
 Requires:   nemo-qml-plugin-signon-qt5
 Requires:   telepathy-accounts-signon >= 0.0.7
 Requires:   connman-qt5-declarative
+Requires:   mapplauncherd-booster-qtcomponents-qt5
 BuildRequires:  pkgconfig(Qt5Qml)
+BuildRequires:  pkgconfig(qdeclarative5-boostable)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 Provides:   accounts-ui > 0.0.2
