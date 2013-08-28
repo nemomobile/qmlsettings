@@ -100,8 +100,8 @@ Sheet {
             width: parent.width
             height: 200
             property string form_tpl: "
-                import QtQuick 1.1
-                import com.nokia.meego 1.0
+                import QtQuick 2.0
+                import com.nokia.meego 2.0
                 Item {
                     id: form
                     anchors { fill: parent; margins: 10 }
