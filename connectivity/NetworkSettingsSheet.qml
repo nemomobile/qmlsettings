@@ -43,10 +43,10 @@ Sheet {
     acceptButtonText: "Connect"
     rejectButtonText: "Cancel"
 
-    property variant netfields: {}
+    property var netfields: {}
 
     function handleInput(key, value) {
-        var dict = networkPage.netfields;
+        var dict = {};
         var isDoneEnabled = false;
         console.log("Received from TextField " + key + " " + value);
         dict[key] = value;
