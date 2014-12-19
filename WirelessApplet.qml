@@ -30,7 +30,7 @@
  */
 
 import QtQuick 2.0
-import com.nokia.meego 2.0
+import QtQuick.Controls.Nemo 1.0
 import MeeGo.Connman 0.2
 
 Applet {
@@ -52,7 +52,7 @@ Applet {
         text: "Wi-Fi"
     }
 
-    Switch {
+    CheckBox {
         id: wifiSwitch
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
